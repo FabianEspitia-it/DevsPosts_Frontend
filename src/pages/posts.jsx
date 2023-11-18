@@ -1,7 +1,8 @@
-import { React, useState } from "react"
-import { useEffect } from "react"
-import { NavBar } from "../components/navbar"
-import { useNavigate } from "react-router-dom"
+import { React, useState } from "react";
+import { useEffect } from "react";
+import { NavBar } from "../components/navbar";
+import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 export function Posts(){
 
@@ -35,10 +36,10 @@ export function Posts(){
         return (
             <>
             <header>
-                <NavBar to1={"/"} title1={"Logout"} to2={"/posts/create"} title2={"CreatePost"} to3={"/user"} title3={"Profile"}/>
+                <NavBar to1={"/"} title1={"Logout"} action={()=>(localStorage.removeItem("user_token"))} to2={"/posts/create"} title2={"CreatePost"} to3={"/user"} title3={localStorage.getItem("user_token") ? jwtDecode(localStorage.getItem("user_token")).username : ""}/>
             </header>
             
-            <main className="font-source-code-pro flex justify-between">
+            <main className="font-source-code-pro flex justify-between bg-orange-100 h-screen">
             <aside className="text-center bg-purple-500 w-60">
                     <h1 className="font-bold text-white">Most liked posts</h1>
                     {posts.map(function(post){
@@ -49,12 +50,16 @@ export function Posts(){
                         )
                     })}
                 </aside>
-                <section className="flex flex-col items-center justify-center">
+                <section className="flex flex-col items-center">
                     {[...posts].reverse().map(function(post){
                         return(
                             <section className="bg-white rounded-lg shadow-lg text-center w-96 mt-7 hover:shadow-sm duration-300">
                                 <h1 className="font-bold">{post.title}</h1>
                                 <p>{post.content}</p>
+                                <div className="flex flex-row justify-between font-bold text-xs">
+                                    <p className="bg-gray-100 w-16 rounded-lg">{post.technology}</p>
+                                    <p className="bg-gray-100 w-28 rounded-lg">{post.user}</p>
+                                </div>
                             </section>
                         );
                     })}

@@ -3,6 +3,8 @@ import React from "react"
 import { useState } from "react"
 import { useEffect } from "react";
 
+import { jwtDecode } from "jwt-decode";
+
 import { useNavigate } from "react-router-dom";
 
 export function CreatePost(){
@@ -19,7 +21,8 @@ export function CreatePost(){
         let data = {
             "title": title,
             "technology": technology,
-            "content": content
+            "content": content, 
+            "user": jwtDecode(localStorage.getItem("user_token")).username
         }
         try {
             console.log(data)
@@ -61,7 +64,9 @@ export function CreatePost(){
                         <label className="font-semibold text-lg" htmlFor="technology">Technology</label>
                         <select className="h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2" name="technology" onChange={(e) => setTechnology(e.target.value)} value={technology}>
                             <option value="Django">Django</option>
+                            <option value="GO">GO</option>
                             <option value="Python">Python</option>
+                            <option value="AI">AI</option>
                             <option value="React">React</option>
                             <option value="JavaScript">JavaScript</option>
                             <option value="Tailwind">Tailwind</option>
