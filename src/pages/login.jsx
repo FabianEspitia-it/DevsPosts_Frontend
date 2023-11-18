@@ -28,7 +28,7 @@ export function Login(){
 
             if (response.status === 202) {
                 const responseData = await response.json();
-                console.log("Respuesta del servidor:", responseData);
+                localStorage.setItem("user_token", responseData.token)
                 return navigate("/posts")
 
             } else {
