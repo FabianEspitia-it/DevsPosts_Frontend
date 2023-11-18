@@ -6,7 +6,7 @@ export function Home(){
     return(
         <>
             <header>
-                <NavBar/>
+                <NavBar to1={"/register"} title1={"Register"} to2={"/"} title2={"DevsPosts"} to3={"/login"} title3={"Login"}/>
             </header>
 
             <main className="flex justify-between font-source-code-pro">

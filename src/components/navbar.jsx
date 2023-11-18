@@ -1,17 +1,17 @@
-export function NavBar(){
+export function NavBar({to1, title1, to2, title2, to3, title3}){
    return(
     <nav className="bg-purple-600 text-white font-bold h-9 font-source-code-pro text-lg">
         <ul className="flex flex-row gap-x-64 justify-center pt-1">
             <li>
-                <a href="/register" className="hover:text-yellow-300 duration-300">Register</a>
+                <a href={to1} className="hover:text-yellow-200 duration-300">{title1}</a>
             </li>
 
             <li>
-                <a href="" className="hover:text-yellow-300 duration-300 ">DevsPosts</a>
+                <a href={to2} className="hover:text-yellow-200 duration-300 ">{title2}</a>
             </li>
 
             <li>
-                <a href="/login" className="hover:text-yellow-300 duration-300">Login</a>
+                <a href={to3} className="hover:text-yellow-200 duration-300">{title3}</a>
             </li>
         </ul>
 
